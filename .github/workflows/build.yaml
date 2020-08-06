@@ -9,9 +9,9 @@ jobs:
   package:
   deploy:
 
-on:
-  push:
-    - master
+name: cibuild # this can be whatever we want; often cibuild
+
+on: push
 
 # person: #object
 #   firstName: 'string' #string
