@@ -1,0 +1,26 @@
+jobs:
+  build:
+    image: ubuntu-18.04 # Fred uses 20.04
+    steps:
+      - uses: actions/checkout@v2.3.1
+      - run: dotnet build
+  test:
+  analyze:
+  package:
+  deploy:
+
+
+
+
+
+
+
+
+# person: #object
+#   firstName: 'string' #string
+#   lastName: 100 #number
+#   middleName: true
+#   alias:  #collection
+#     - 'dotnet'
+#     - 'lead'
+#     - subAlias: #don't do this
