@@ -4,13 +4,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.1 # https://github.com/marketplace/actions/checkout
       - run: dotnet build
+
   test:
+    # needs: build
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.3.1
-      - run: dotnet test
+      - run: dotnet test -p:CollectCoverage=true
       
-  # analyze:
+  analyze:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@2.3.1
+      - run: dotnet tool install --global dotnet-sonarscanner
+      - run: |
+        dotnet sonarscanner begin -o:'dkdawkins' -k:'dkdawkins_training-code-4_2' -d:sonar.login='894cc880fc91cce59a8453853d145f6aed23de5b'
+        dotnet build
+        dotnet test -p:CollectCoverage=true
+        dotnet sonarscanner end -d:sonar.login='894cc880fc91cce59a8453853d145f6aed23de5b'
   # package:
   # deploy:
 
